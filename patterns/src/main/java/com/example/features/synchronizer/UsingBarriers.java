@@ -1,49 +1,46 @@
 package com.example.features.synchronizer;
 
-
-import com.example.Emoji;
-
 import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Executors;
 
 /**
  * Barriers are used for blocking a group of threads until they come together at
  * a single point in order to proceed. Basically, convergence of threads.
- * <p>
+ * 
  * Accepts a runnable in it's constructor to be called when the threads reach the
  * barrier, but before its unblocked
- * <p>
+ * 
  * Most common implementation is cyclic barrier.
+ * 
  */
 public class UsingBarriers {
 
-    private final static String NOTE = "Datasource of books "+ Emoji.BOOK+" reading by ";
+	public static void main(String[] args) {
 
-    public static void main(String[] args) {
+		Runnable barrierAction = () -> System.out.println("Well done, guys!");
 
+		var executor = Executors.newCachedThreadPool();
+		var barrier = new CyclicBarrier(10, barrierAction);
 
+		Runnable task = () -> {
+			try {
+				// simulating a task that can take at most 1sec to run
+				System.out.println("Doing task for " + Thread.currentThread().getName());
+				Thread.sleep(new Random().nextInt(10) * 100);
+				System.out.println("Done for " + Thread.currentThread().getName());
+				barrier.await();
+			} catch (InterruptedException | BrokenBarrierException e) {
+				e.printStackTrace();
+			}
+		};
 
-        var semaphore = new Semaphore(5);
+		for (int i = 0; i < 10; i++) {
+			executor.execute(task);
+		}
+		executor.shutdown();
 
-        Runnable task = () -> {
-            try {
-                if (semaphore.tryAcquire(10, TimeUnit.MINUTES)) {
-                    System.out.println(NOTE +Thread.currentThread().getName());
-                    Thread.sleep(2000);
-                    System.out.println("Read all books by "+Thread.currentThread().getName());
-                }
-            }catch (Exception e){}
-            finally {
-                semaphore.release();
-            }
+	}
 
-        };
-        var executor = Executors.newCachedThreadPool();
-        for (int i = 0; i < 4; i++) {
-            executor.execute(task);
-        }
-
-        executor.shutdown();
-
-    }
 }
