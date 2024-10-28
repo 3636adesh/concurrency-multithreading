@@ -64,7 +64,7 @@ public class UsingAtomics {
         AtomicCounter atomicCounter = new AtomicCounter();
         var cachePool = Executors.newCachedThreadPool();
         for (int i = 0; i < 10_000_000; i++) {
-            cachePool.execute(() -> atomicCounter.increment());
+            cachePool.execute(atomicCounter::increment);
         }
 
         cachePool.shutdown();
