@@ -1,5 +1,6 @@
 package com.example.pattern.share_state;
 
+import com.example.Adesh;
 import com.example.pattern.GuardedBy;
 import com.example.pattern.ThreadSafe;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.Executors;
  * Example: A simple Counter example.
  */
 @ThreadSafe
+@Adesh
 public class VisitCounter {
 
 	@GuardedBy("this")
