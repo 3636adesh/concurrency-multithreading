@@ -24,6 +24,7 @@
 	<modules>
 		<module>basics</module>
 		<module>patterns</module>
+		<module>loom-fiber</module>
 	</modules>
 	<scm>
 		<connection/>
