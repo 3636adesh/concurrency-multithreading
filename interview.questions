@@ -1,0 +1,71 @@
+🔥 Tough Java Concurrency Questions :-
+What are the differences between synchronized, Lock, and ReentrantLock? When would you prefer one over the other?
+
+Explain how the Java Memory Model (JMM) works. What role does volatile play?
+
+What are the problems with thread safety in singleton patterns, and how can you fix them?
+
+What is the difference between wait(), notify(), and notifyAll()? When would you use them?
+
+Explain deadlock, livelock, and starvation. How would you prevent each in a multi-threaded application?
+
+What is false sharing and how does it affect performance?
+
+How does the ThreadLocal class work? What are the pitfalls in using it in a Spring Boot application?
+
+What are the advantages of using a ThreadPoolExecutor instead of manually creating threads?
+
+What is the Fork/Join framework? How is it different from an ExecutorService?
+
+Explain the role of CompletableFuture and its methods like thenApply, thenCombine, exceptionally, etc.
+
+💻 Tough Spring Boot Concurrency Coding Challenges
+1. Async REST API
+Build a Spring Boot API that accepts a request and processes it asynchronously using @Async and CompletableFuture.
+
+Log request start and end timestamps
+
+Handle exceptions without blocking the main thread
+
+Return 202 Accepted immediately and poll for the result
+
+2. Custom Thread Pool Executor in Spring Boot
+Implement your own ThreadPoolTaskExecutor bean and use it in an @Async service method. Control:
+
+Core pool size
+
+Max pool size
+
+Queue capacity
+
+Rejection policy
+
+3. Banking Transaction Simulation
+Simulate multiple users transferring money concurrently between accounts.
+
+Ensure consistency with ReentrantLock
+
+Prevent deadlocks by ordering locks properly
+
+Add stress test with 1000+ transfers
+
+4. Rate Limiting API
+Implement a rate limiter using Semaphore or AtomicInteger.
+
+Limit max 5 requests per second per user
+
+Reset counter using a scheduled executor
+
+5. Concurrent Cache Invalidation
+Design a shared cache that refreshes every 5 seconds and can be safely accessed by multiple threads.
+
+Use ConcurrentHashMap and ReadWriteLock
+
+Allow readers to access stale data while write is updating cache
+
+6. Thread Leak Detection
+Create a task scheduler that runs background tasks. Intentionally cause a thread leak and write a monitor to detect it using:
+
+Thread count monitor
+
+Dead thread detection via Thread.getState()
