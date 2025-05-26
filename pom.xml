@@ -23,8 +23,7 @@
 	</developers>
 	<modules>
 		<module>basics</module>
-		<module>patterns</module>
-		<module>loom-fiber</module>
+		<module>bank-account-service</module>
 	</modules>
 	<scm>
 		<connection/>
