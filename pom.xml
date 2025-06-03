@@ -5,15 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
-		<relativePath/>
+		<version>3.4.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.malunjkar</groupId>
-	<artifactId>concurrency-parent-module</artifactId>
+	<artifactId>async-way</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>concurrency-multithreading</name>
-	<description>Demo project for Spring Boot for concurrency-multithreading</description>
+	<name>async-way</name>
+	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -21,11 +20,6 @@
 	<developers>
 		<developer/>
 	</developers>
-	<modules>
-		<module>basics</module>
-		<module>patterns</module>
-		<module>loom-fiber</module>
-	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
@@ -55,6 +49,18 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
